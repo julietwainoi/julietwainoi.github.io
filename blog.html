@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What is Infrastructure as Code (IaC) and Why It's Transforming DevOps</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+    h1, h2 { color: #2c3e50; }
+    code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>What is Infrastructure as Code (IaC) and Why It's Transforming DevOps</h1>
+  <p><strong>Date:</strong> May 26, 2025</p>
+
+  <h2>🔧 What is Infrastructure as Code (IaC)?</h2>
+  <p>Infrastructure as Code (IaC) is the practice of managing and provisioning computing infrastructure using machine-readable configuration files, rather than through manual processes. Instead of clicking buttons in a cloud provider’s dashboard, you write code (like in YAML, JSON, or HCL) that defines the exact setup of your infrastructure.</p>
+
+  <p>Popular IaC tools include:</p>
+  <ul>
+    <li><strong>Terraform</strong> (by HashiCorp)</li>
+    <li><strong>CloudFormation</strong> (AWS native)</li>
+    <li><strong>Ansible</strong> (more configuration management than pure IaC)</li>
+  </ul>
+
+  <h2>🚀 Why is IaC Important?</h2>
+  <p>Before IaC, setting up infrastructure was error-prone, time-consuming, and inconsistent. With IaC, you can:</p>
+  <ul>
+    <li>🔁 <strong>Automate deployments</strong> — spin up infrastructure in seconds</li>
+    <li>📜 <strong>Keep infrastructure versioned</strong> — just like code</li>
+    <li>🛠️ <strong>Eliminate human error</strong> — no more "it works on my machine"</li>
+    <li>💬 <strong>Collaborate better</strong> — teams can review infra changes via pull requests</li>
+  </ul>
+
+  <h2>💡 Real-World Example</h2>
+  <p>Using Terraform, you can define a virtual network (VPC), subnets, EC2 instances, and even security groups in a `.tf` file. This makes it easy to replicate environments (like dev, staging, prod) consistently across teams and regions.</p>
+
+  <pre><code>resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+}</code></pre>
+
+  <h2>🔥 How IaC is Transforming DevOps</h2>
+  <p>DevOps aims to speed up software delivery while maintaining reliability. IaC is a game changer because it brings the same discipline of software engineering — automation, testing, version control — to infrastructure.</p>
+
+  <p>It supports:</p>
+  <ul>
+    <li>🚀 Continuous Integration/Deployment (CI/CD)</li>
+    <li>🔐 Improved security and compliance through auditable infrastructure changes</li>
+    <li>📦 Faster recovery and reproducibility in case of failure</li>
+  </ul>
+
+  <h2>🧠 Final Thoughts</h2>
+  <p>Infrastructure as Code isn’t just a tool — it's a mindset shift. It encourages you to treat infrastructure the same way you treat application code: with care, automation, and collaboration.</p>
+
+  <p>For anyone learning DevOps or cloud engineering, IaC is a must-have skill in your toolkit. Start small, experiment with Terraform or CloudFormation, and watch your infrastructure become as manageable as your codebase.</p>
+
+  <p>✨ Happy automating!</p>
+</body>
+</html>
