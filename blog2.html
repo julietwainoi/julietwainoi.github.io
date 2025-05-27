@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 2 – Launching EC2 Instances with Terraform</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+    h1, h2 { color: #2c3e50; }
+    code, pre { background-color: #f4f4f4; padding: 8px; border-radius: 5px; display: block; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Day 2 – Launching EC2 Instances with Terraform</h1>
+  <p><strong>Date:</strong> May 27, 2025</p>
+  <p><strong>Author:</strong> Juliet Wanjiku (@julietwainoi)</p>
+
+  <h2>📘 What I Learned</h2>
+  <ul>
+    <li>How to define infrastructure in code using Terraform</li>
+    <li>How to launch an EC2 instance using a <code>main.tf</code> configuration file</li>
+    <li>The structure of a Terraform project and how to use <code>terraform init</code>, <code>plan</code>, and <code>apply</code></li>
+    <li>How to set up a simple web server using <code>user_data</code></li>
+    <li>Security groups and basic access control</li>
+  </ul>
+
+  <h2>🛠️ Infrastructure Details</h2>
+  <h3>Single Server Deployment</h3>
+  <ul>
+    <li><strong>Region:</strong> us-east-1</li>
+    <li><strong>Instance Type:</strong> t2.micro</li>
+    <li><strong>Security Group:</strong> Allows SSH (port 22)</li>
+  </ul>
+
+  <h3>Web Server Deployment</h3>
+  <ul>
+    <li><strong>Region:</strong> us-east-1</li>
+    <li><strong>Instance Type:</strong> t2.micro</li>
+    <li><strong>Security Group:</strong> Allows HTTP (port 80)</li>
+    <li><strong>Extras:</strong> Used <code>user_data</code> to install and start NGINX on boot</li>
+  </ul>
+
+  <h2>📁 Project Structure</h2>
+  <pre><code>
+Day2/
+├── Submissions/
+│   └── julietwainoi/
+│       ├── architecture/
+│       │   ├── single-server.png
+│       │   └── web-server.png
+│       ├── terraform/
+│       │   ├── single-server/
+│       │   │   └── main.tf
+│       │   └── web-server/
+│       │       └── main.tf
+│       └── submission.md
+  </code></pre>
+
+  <h2>📸 Infrastructure Diagrams</h2>
+  <p>Stored under <code>architecture/</code>:</p>
+  <ul>
+    <li><code>single-server.png</code> – Shows a simple EC2 instance with SSH access</li>
+    <li><code>web-server.png</code> – Depicts web server with HTTP access</li>
+  </ul>
+
+  <h2>📌 Sample Terraform Configuration</h2>
+  <pre><code>
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  user_data     = <<-EOF
+              #!/bin/bash
+              sudo apt update
+              sudo apt install -y nginx
+              systemctl start nginx
+              systemctl enable nginx
+            EOF
+
+  tags = {
+    Name = "WebServer"
+  }
+}
+  </code></pre>
+
+  <h2>🧠 Reflections</h2>
+  <p>Today’s challenge helped solidify my understanding of how Terraform interacts with AWS. I now feel more confident launching and managing basic infrastructure programmatically. Visualizing the flow from code to deployed instance using diagrams made everything much clearer!</p>
+
+  <h2>🔗 Resources</h2>
+  <ul>
+    <li>Book: <em>Terraform: Up & Running</em> - Chapter 2</li>
+    <li><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance" target="_blank">Terraform AWS Instance Docs</a></li>
+    <li><a href="https://julietwainoi.github.io/30-Day-Terraform-challenge-" target="_blank">My GitHub Repo</a></li>
+  </ul>
+
+  <h2>💬 Final Thoughts</h2>
+  <p>This challenge is pushing me to become more consistent and hands-on with Terraform and AWS. I'm excited to build more complex setups and maybe even automate multi-tier architectures in the coming days. On to Day 3!</p>
+
+  <p>— Juliet</p>
+</body>
+</html>
