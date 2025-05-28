@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Getting Started with Terraform: Providers, Resources, and Data Sources</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Terraform Lab Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      border-left: 4px solid #007acc;
+    }
+    code {
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
 
   <h1>🌐 Getting Started with Terraform: Providers, Resources, and Data Sources</h1>
 
-  <h2>🧠 Introduction:</h2>
+  <h2>🧠 Introduction</h2>
   <p>
-    In my recent Terraform learning journey, I explored some foundational concepts that are critical to managing infrastructure as code.
-    In this post, I’ll walk you through Labs 03, 04, and 05, where I learned about <strong>providers</strong>, <strong>resource blocks</strong>, and <strong>data sources</strong> — all using Amazon Web Services (AWS).
+    In this blog post, I’ll walk you through Labs 03, 04, and 05 of my Terraform learning journey. These cover providers, resource blocks, and data sources using AWS.
   </p>
 
   <h2>🔍 Lab 03: Terraform Providers</h2>
   <p>
-    A provider tells Terraform how to interact with a specific cloud platform or service. For this lab, I used the AWS provider.
+    Providers tell Terraform how to interact with cloud platforms. Here’s how I defined the AWS provider:
   </p>
-  <p>Here’s how I declared it:</p>
-
-  <pre><code class="language-hcl">
-terraform {
+  <pre><code>terraform {
   required_version = ">= 1.0.0"
   required_providers {
     aws = {
@@ -34,12 +52,42 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-}
-  </code></pre>
+}</code></pre>
+
+  <h2>💻 Lab 04: AWS Resource Blocks</h2>
+  <p>This creates an EC2 instance with a dynamic AMI:</p>
+  <pre><code>resource "aws_instance" "lab_ec2" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "LabEC2Instance"
+  }
+}</code></pre>
+
+  <h2>🔗 Lab 05: Data Sources</h2>
+  <p>This pulls the latest Amazon Linux 2 AMI:</p>
+  <pre><code>data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}</code></pre>
+
+  <h2>🧪 Running the Code</h2>
+  <pre><code>terraform init
+terraform plan
+terraform apply</code></pre>
+  <p>To clean up:</p>
+  <pre><code>terraform destroy</code></pre>
+
+  <h2>🎯 Final Thoughts</h2>
   <p>
-    This ensures that Terraform uses a compatible version of AWS provider in the <code>us-east-1</code> region.
+    This simple lab showed me how Terraform uses providers and data sources to dynamically manage AWS infrastructure. A great foundation!
   </p>
 
-  <h2>💻 Lab 04: Creating AWS Resources</h2>
-  <p>
-    In this lab, I created an <strong>EC2 instance</strong> using a resourc
+</body>
+</html>
