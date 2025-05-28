@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Getting Started with Terraform: Providers, Resources, and Data Sources</title>
+</head>
+<body>
+
+  <h1>🌐 Getting Started with Terraform: Providers, Resources, and Data Sources</h1>
+
+  <h2>🧠 Introduction:</h2>
+  <p>
+    In my recent Terraform learning journey, I explored some foundational concepts that are critical to managing infrastructure as code.
+    In this post, I’ll walk you through Labs 03, 04, and 05, where I learned about <strong>providers</strong>, <strong>resource blocks</strong>, and <strong>data sources</strong> — all using Amazon Web Services (AWS).
+  </p>
+
+  <h2>🔍 Lab 03: Terraform Providers</h2>
+  <p>
+    A provider tells Terraform how to interact with a specific cloud platform or service. For this lab, I used the AWS provider.
+  </p>
+  <p>Here’s how I declared it:</p>
+
+  <pre><code class="language-hcl">
+terraform {
+  required_version = ">= 1.0.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+  </code></pre>
+  <p>
+    This ensures that Terraform uses a compatible version of AWS provider in the <code>us-east-1</code> region.
+  </p>
+
+  <h2>💻 Lab 04: Creating AWS Resources</h2>
+  <p>
+    In this lab, I created an <strong>EC2 instance</strong> using a resourc
