@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 5: Scaling Infrastructure and Managing Terraform State</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; }
+    code { background-color: #eef; padding: 2px 6px; border-radius: 4px; }
+    pre { background-color: #f4f4f4; padding: 10px; border-left: 3px solid #ccc; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Day 5: Scaling Infrastructure and Managing Terraform State</h1>
+
+  <p>Today in my #30DaysOfTerraform challenge, I explored two key areas:</p>
+
+  <h2>📈 Scaling Infrastructure</h2>
+  <p>I scaled a web server cluster using <code>count</code> in Terraform to spin up multiple EC2 instances based on demand.</p>
+
+  <pre><code>resource "aws_instance" "web" {
+  count         = var.instance_count
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  ...
+}</code></pre>
+
+  <h2>🌐 Load Balancer Deployment</h2>
+  <p>I deployed an Application Load Balancer (ALB) to distribute traffic across my cluster, increasing availability and resilience.</p>
+
+  <h2>🔍 Understanding Terraform State</h2>
+  <p>I learned how Terraform uses a <code>terraform.tfstate</code> file to track infrastructure. When I deleted an instance manually from AWS, Terraform tried to recreate it — showing the importance of not manually changing cloud resources outside of Terraform.</p>
+
+  <h2>📊 Comparison Table of Terraform Blocks</h2>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <tr>
+      <th>Block</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+    <tr>
+      <td><code>resource</code></td>
+      <td>Declares infrastructure (e.g., EC2, VPC)</td>
+      <td><code>resource "aws_instance" "web" {...}</code></td>
+    </tr>
+    <tr>
+      <td><code>variable</code></td>
+      <td>Inputs to parametrize configurations</td>
+      <td><code>variable "instance_type" {...}</code></td>
+    </tr>
+    <tr>
+      <td><code>output</code></td>
+      <td>Returns useful values</td>
+      <td><code>output "web_ip" {...}</code></td>
+    </tr>
+    <tr>
+      <td><code>provider</code></td>
+      <td>Specifies the provider (e.g., AWS)</td>
+      <td><code>provider "aws" {...}</code></td>
+    </tr>
+    <tr>
+      <td><code>module</code></td>
+      <td>Reusable group of resources</td>
+      <td><code>module "web_cluster" {...}</code></td>
+    </tr>
+  </table>
+
+  <h2>💡 Key Takeaway</h2>
+  <p>Always let Terraform manage your infrastructure to avoid state drift. Manual changes to resources should be avoided!</p>
+
+  <p>#30DaysOfTerraform #IaC #DevOps #AWS #Terraform</p>
+</body>
+</html>
