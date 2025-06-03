@@ -44,14 +44,23 @@
 
   <h3>🧪 Example:</h3>
   <pre><code>
-output "instance_ip" {
-  value = aws_instance.my_ec2_instance.public_ip
-  description = "The public IP of the EC2 instance"
+# Output the name of the created S3 bucket
+output "s3_bucket_name" {
+  value       = aws_s3_bucket.example.bucket
+  description = "The name of the created S3 bucket"
 }
+
+# Output the ARN of the created S3 bucket
+output "s3_bucket_arn" {
+  value       = aws_s3_bucket.example.arn
+  description = "The ARN of the created S3 bucket"
+}
+
   </code></pre>
 
   <p>
-    After running <code>terraform apply</code>, you’ll see the value of this output printed in the console. You can also use <code>terraform output instance_ip</code> to retrieve it later.
+    After running <code>terraform apply</code>, you’ll see the value of this output printed in the console. You can also use <code>terraform output s3_bucket_name
+</code> to retrieve it later.
   </p>
 
   <h2>🔹 What Is Terraform State?</h2>
