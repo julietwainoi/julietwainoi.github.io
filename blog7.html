@@ -1,30 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day 7: Understanding Terraform State - Part 2</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-      background: #f9f9f9;
-    }
-    h1, h2 {
-      color: #2f4f4f;
-    }
-    code {
-      background: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-    ul {
-      margin-left: 1.5rem;
-    }
-  </style>
 </head>
 <body>
 
@@ -32,7 +9,7 @@
 
   <p>Welcome to Day 7 of the Terraform 30-Day Challenge! Today was all about deepening our understanding of <strong>Terraform state isolation</strong>. I explored different methods to manage and separate Terraform states for multi-environment setups. Here’s what I covered:</p>
 
-  <h2>📖 Reading Highlights</h2>
+  <h2>Reading Highlights</h2>
   <ul>
     <li><strong>State File Isolation</strong>: Why isolating state is critical for stability and predictability.</li>
     <li><strong>Isolation via Workspaces</strong>: Using <code>terraform workspace</code> to create separate logical environments.</li>
@@ -40,28 +17,32 @@
     <li><strong>The Remote State Source</strong>: How to share state using backends like S3 and use <code>terraform_remote_state</code> data sources.</li>
   </ul>
 
-  <h2>🧪 Hands-on Labs</h2>
+  <h2>Hands-on Labs</h2>
   <ul>
-    <li>✅ Lab 08: State Management</li>
-    <li>✅ Lab 09: State Locking</li>
+    <li>Lab 08: State Management</li>
+    <li>Lab 09: State Locking</li>
   </ul>
 
-  <h2>⚙️ Activity: Practice Time</h2>
+  <h2>Activity: Practice Time</h2>
   <p>I practiced isolating Terraform state in two ways:</p>
   <ul>
     <li><strong>Workspaces:</strong> Used <code>terraform workspace new dev</code> and similar commands to create environments.</li>
     <li><strong>File Layouts:</strong> Created separate directories for each environment with its own <code>main.tf</code> and backend config.</li>
   </ul>
 
-  <h2>🚀 Bonus Project</h2>
-  <p>I set up remote state storage with AWS S3 and enabled state locking using DynamoDB. This ensures consistency and prevents accidental overwrites in team environments. I also simulated concurrent state changes to observe how locks prevent conflicts. 💪</p>
+  <h2>Bonus Project</h2>
+  <p>I set up remote state storage with AWS S3 and enabled state locking using DynamoDB. This ensures consistency and prevents accidental overwrites in team environments. I also simulated concurrent state changes to observe how locks prevent conflicts.</p>
 
-  <h2>📝 Blog Post Ideas</h2>
+  <h2>Blog Post Ideas</h2>
   <ul>
-    <li>“State Isolation: Layout vs Workspace”</li>
-    <li>“Best Practices for Isolating Terraform State in Multi-Environment Setups”</li>
+    <li>State Isolation: Layout vs Workspace</li>
+    <li>Best Practices for Isolating Terraform State in Multi-Environment Setups</li>
   </ul>
- <p>That's all for Day 7! See you tomorrow with more Terraform adventures. 🌍</p>
+
+  <h2>Social Media Post</h2>
+  <p>🗂 Learned how to manage Terraform state effectively today. Crucial for consistent deployments. #30daytfchallenge #HUG #hashicorp #HUGMERU @awsaimlkenyaug #IaC</p>
+
+  <p>That's all for Day 7! See you tomorrow with more Terraform adventures.</p>
 
 </body>
 </html>
