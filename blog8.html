@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Building Reusable Infrastructure with Terraform Modules</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    pre {
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛠️ Building Reusable Infrastructure with Terraform Modules</h1>
+
+  <p>
+    Today in my Terraform journey, I explored the concept of <strong>modules</strong> — one of the most powerful tools for creating scalable and maintainable infrastructure as code. Modules help organize code, enforce standards, and avoid repetition.
+  </p>
+
+  <h2>✅ Why Modules Matter</h2>
+  <p>
+    In real-world cloud infrastructure, repeating the same resource definitions across multiple environments or services becomes messy. Modules solve this by allowing us to define a resource once and reuse it many times. This brings:
+  </p>
+  <ul>
+    <li>Better organization</li>
+    <li>Cleaner code</li>
+    <li>Easier reuse</li>
+    <li>Improved scalability</li>
+  </ul>
+
+  <h2>🧱 How I Built an EC2 Module</h2>
+  <p>
+    I created a basic EC2 instance module inside <code>modules/ec2-instance</code> that looks like this:
+  </p>
+
+  <pre><code># modules/ec2-instance/main.tf
+resource "aws_instance" "ec2" {
+  ami           = var.ami
+  instance_type = var.instance_type
+  tags          = var.tags
+}</code></pre>
+
+  <pre><code># modules/ec2-instance/variables.tf
+variable "ami" {
+  type = string
+}
+variable "instance_type" {
+  type = string
+}
+variable "tags" {
+  type = map(string)
+}</code></pre>
+
+  <pre><code># modules/ec2-instance/outputs.tf
+output "public_ip" {
+  value = aws_instance.ec2.public_ip
+}</code></pre>
+
+  <h2>🔁 Reusing the Module</h2>
+  <p>
+    I then used the module in my root <code>main.tf</code> file to create an EC2 instance:
+  </p>
+
+  <pre><code># main.tf
+provider "aws" {
+  region = "us-west-2"
+}
+
+module "web_server" {
+  source        = "./modules/ec2-instance"
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  tags = {
+    Name        = "Day8WebServer"
+    Environment = "dev"
+  }
+}
+
+output "web_server_ip" {
+  value = module.web_server.public_ip
+}</code></pre>
+
+  <p>
+    With just a few lines, I launched a fully functional, reusable EC2 instance. I can now spin up multiple instances just by changing the inputs!
+  </p>
+
+  <h2>🚀 Conclusion</h2>
+  <p>
+    Terraform modules are a game-changer for clean, scalable infrastructure. This EC2 example is just the beginning — you can use modules for VPCs, databases, load balancers, and more. I’m excited to keep building smarter with reusable infrastructure!
+  </p>
+
+</body>
+</html>
