@@ -5,72 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Advanced Terraform Module Usage</title>
   <style>
-    body {<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Advanced Terraform Module Usage</title>
-  <style>
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      margin: 2rem;
+      margin: 0;
       background: #f9f9f9;
       color: #333;
+      display: flex;
+      justify-content: center;
     }
+
+    .container {
+      max-width: 800px;
+      padding: 2rem;
+      background-color: white;
+      margin: 2rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
     h1, h2 {
       color: #2c3e50;
     }
+
     code {
       background: #eee;
       padding: 0.2em 0.4em;
       border-radius: 4px;
     }
+
     pre {
       background: #f4f4f4;
       padding: 1em;
       overflow-x: auto;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Advanced Terraform Module Usage: Versioning, Nesting, and Reuse Across Environments</h1>
+  <div class="container">
+    <h1>Advanced Terraform Module Usage: Versioning, Nesting, and Reuse Across Environments</h1>
 
-  <p>
-    On Day 9 of the <strong>30-Day Terraform Challenge</strong>, I explored advanced features of Terraform modules.
-    Building on what I learned on Day 8, I focused on versioning modules and reusing them across multiple environments.
-  </p>
+    <p>
+      On Day 9 of the <strong>30-Day Terraform Challenge</strong>, I explored advanced features of Terraform modules.
+      Building on what I learned on Day 8, I focused on versioning modules and reusing them across multiple environments.
+    </p>
 
-  <h2>Why Module Versioning Matters</h2>
-  <p>
-    By versioning modules using Git tags (e.g., <code>v1.0.0</code>), I can safely introduce changes and test them in <code>dev</code>
-    before promoting to <code>prod</code>. This ensures better traceability, rollback capability, and clean infrastructure workflows.
-  </p>
+    <h2>Why Module Versioning Matters</h2>
+    <p>
+      By versioning modules using Git tags (e.g., <code>v1.0.0</code>), I can safely introduce changes and test them in <code>dev</code>
+      before promoting to <code>prod</code>. This ensures better traceability, rollback capability, and clean infrastructure workflows.
+    </p>
 
-  <h2>How I Set It Up</h2>
-  <p>
-    I refactored my EC2 module and hosted it in its own GitHub repository. Each environment now uses the module like this:
-  </p>
+    <h2>How I Set It Up</h2>
+    <p>
+      I refactored my EC2 module and hosted it in its own GitHub repository. Each environment now uses the module like this:
+    </p>
 
-  <pre><code>module "ec2_instance" {
+    <pre><code>module "ec2_instance" {
   source        = "git::https://github.com/myusername/terraform-aws-ec2-instance-module.git?ref=v1.0.0"
   ami           = var.ami
   instance_type = var.instance_type
   tags          = var.tags
 }</code></pre>
 
-  <p>
-    Environment-specific configurations (like AMI, instance size, and tags) are defined in separate folders for dev, staging, and production.
-  </p>
+    <p>
+      Environment-specific configurations (like AMI, instance size, and tags) are defined in separate folders for dev, staging, and production.
+    </p>
 
-  <h2>S3 Backend with Versioning</h2>
-  <p>
-    I also enabled versioning on the S3 bucket used for storing Terraform state, helping to protect against accidental deletions or changes.
-  </p>
+    <h2>S3 Backend with Versioning</h2>
+    <p>
+      I also enabled versioning on the S3 bucket used for storing Terraform state, helping to protect against accidental deletions or changes.
+    </p>
 
-  <pre><code>resource "aws_s3_bucket" "tf_state" {
+    <pre><code>resource "aws_s3_bucket" "tf_state" {
   bucket = "my-tfstate-bucket"
   acl    = "private"
 
@@ -84,8 +93,8 @@
   }
 }</code></pre>
 
-  <h2>Folder Structure</h2>
-  <pre><code>Day9/
+    <h2>Folder Structure</h2>
+    <pre><code>Day9/
 └── Submissions/
     └── julietwainoi/
         ├── terraform/
@@ -102,107 +111,13 @@
         └── Day9_submission.md
 </code></pre>
 
-  <h2>Final Thoughts</h2>
-  <p>
-    Today’s work helped me transform my Terraform code into reusable, environment-agnostic modules. With versioning, I now have a safe way to evolve infrastructure without breaking production. Next steps: add CI/CD and tests!
-  </p
+    <h2>Final Thoughts</h2>
+    <p>
+      Today’s work helped me transform my Terraform code into reusable, environment-agnostic modules. With versioning, I now have a safe way to evolve infrastructure without breaking production. Next steps: add CI/CD and tests!
+    </p>
 
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 2rem;
-      background: #f9f9f9;
-      color: #333;
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    code {
-      background: #eee;
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1em;
-      overflow-x: auto;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Advanced Terraform Module Usage: Versioning, Nesting, and Reuse Across Environments</h1>
-
-  <p>
-    On Day 9 of the <strong>30-Day Terraform Challenge</strong>, I explored more advanced features of Terraform modules.
-    Building on what I learned on Day 8, I focused on versioning modules and structuring them for use across multiple environments.
-  </p>
-
-  <h2>Why Module Versioning Matters</h2>
-  <p>
-    By versioning modules using Git tags (e.g., <code>v1.0.0</code>), I can safely introduce changes and test them in <code>dev</code>
-    before deploying to <code>prod</code>. This helps ensure reliability, traceability, and rollback capability.
-  </p>
-
-  <h2>How I Set It Up</h2>
-  <p>
-    I refactored my EC2 module and hosted it in its own GitHub repository. Then, I used that module in my environment projects like this:
-  </p>
-
-  <pre><code>module "ec2_instance" {
-  source  = "git::https://github.com/myusername/terraform-aws-ec2-instance-module.git?ref=v1.0.0"
-  ami     = var.ami
-  instance_type = var.instance_type
-  tags    = var.tags
-}</code></pre>
-
-  <p>
-    Each environment folder (e.g., <code>dev/</code>, <code>staging/</code>, <code>prod/</code>) had its own <code>main.tf</code> using the appropriate module version.
-  </p>
-
-  <h2>S3 Backend with Versioning</h2>
-  <p>
-    I also enabled versioning in the S3 bucket used for storing Terraform state:
-  </p>
-
-  <pre><code>resource "aws_s3_bucket" "tf_state" {
-  bucket = "my-tfstate-bucket"
-  acl    = "private"
-
-  versioning {
-    enabled = true
-  }
-
-  tags = {
-    Name        = "Terraform State Bucket"
-    Environment = "global"
-  }
-}</code></pre>
-
-  <h2>Folder Structure</h2>
-  <pre><code>terraform-project/
-``
-Day9/
-└── Submissions/
-    └── julietwainoi
-        ├── terraform/terraform-ec2-instance/
-        │   ├── main.tf
-        │   └── outputs.tf
-        ├── terraform/terraform-ec2-environmets/
-        │   ├── Dev/
-        │   │   └── main.tf
-        │   └── staging/
-        │        └── main.tf
-        │    └── prod/
-        │       └── main.tf   
-        │ 
-        └── Day9_submission.md
-
-  <h2>Final Thoughts</h2>
-  <p>
-    Today’s work helped me make my Terraform code more production-ready by improving reusability and maintainability. I’m excited to keep improving this structure and possibly add testing and CI/CD next.
-  </p>
-
-  <p><strong>#InfrastructureAsCode #Terraform #AWS #DevOps</strong></p>
+    <p><strong>#InfrastructureAsCode #Terraform #AWS #DevOps #ModuleVersioning #IaC</strong></p>
+  </div>
 
 </body>
 </html>
